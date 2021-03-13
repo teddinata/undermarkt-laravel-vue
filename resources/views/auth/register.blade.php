@@ -34,6 +34,23 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Nomor HP</label>
+                    <input
+                      type="text"
+                      class="form-control @error('phone_number') is-invalid @enderror"
+                      name="phone_number"
+                      value="{{ old('phone_number') }}"
+                      required autocomplete="phone_number"
+                      autofocus aria-describedby="nameHelp"
+                      v-model="phone_number"
+                      autofocus/>
+                      @error('phone_number')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                  </div>
+                <div class="form-group">
                   <label>Email</label>
                   <input
                     type="email"

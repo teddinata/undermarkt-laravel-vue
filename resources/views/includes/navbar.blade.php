@@ -8,18 +8,18 @@
     </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route ('home')}}">Home </a>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->is('home*')) ? 'active' : '' }}" href="{{route ('home')}}">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route ('categories')}}">Categories</a>
+                    <a class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}" href="{{route ('categories')}}">Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Rewards</a>
                 </li>
                 @guest
                 <li class="nav-item">
-                    <a class="btn btn-info nav-link px-4 text-white" href="{{ route('register') }}">Sign Up</a>
+                    <a class="btn btn-info nav-link px-4 text-white mb-2" href="{{ route('register') }}">Sign Up</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-success nav-link px-4 text-white" href="{{ route('login') }}">Sign In</a>

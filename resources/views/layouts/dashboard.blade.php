@@ -8,7 +8,8 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-
+     <!-- Favicon  -->
+     <link rel="icon" href="/images/icon.png" />
     <title>@yield('title')</title>
 
     @stack('prepend-style')
@@ -24,7 +25,7 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img src="/images/dashboard-store-logo.svg" alt="" class="my-4" />
+            <img src="/images/undermarket logo 2.png" alt="" class="my-4 w-100" />
           </div>
           <div class="list-group list-group-flush">
             <a

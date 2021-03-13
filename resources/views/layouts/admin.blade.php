@@ -8,6 +8,8 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
+     <!-- Favicon  -->
+     <link rel="icon" href="/images/icon.png" />
 
     <title>@yield('title')</title>
 
@@ -28,7 +30,7 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              {{-- href="{{ route('admin-dashboard') }}" --}}
+              href="{{ route('admin.dashboard') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin')) ? 'active' : '' }} "
             >
               Dashboard
@@ -52,8 +54,8 @@
               Categories
             </a>
             <a
-              href="#"
-              class="list-group-item list-group-item-action"
+              href="{{ route('transaction.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
             >
               Transactions
             </a>
@@ -109,7 +111,7 @@
                         alt=""
                         class="rounded-circle mr-2 profile-picture"
                       />
-                      Hi, Angga
+                      Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu">
                       <a href="/" class="dropdown-item">Logout</a>
@@ -120,7 +122,7 @@
                 <ul class="navbar-nav d-block d-lg-none">
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      Hi, Angga
+                      Hi, {{ Auth::user()->name }}
                     </a>
                   </li>
                   <li class="nav-item">

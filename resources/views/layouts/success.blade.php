@@ -7,6 +7,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+     <!-- Favicon  -->
+     <link rel="icon" href="/images/icon.png" />
+     
     <title>@yield('title')</title>
 
    {{-- Style --}}
@@ -18,8 +21,8 @@
 </head>
 
 <body>
-  
-   
+
+
 
     {{-- Page Content --}}
     @yield('content')

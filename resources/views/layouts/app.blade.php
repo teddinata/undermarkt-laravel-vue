@@ -8,7 +8,8 @@
     <meta name="author" content="" />
 
     <title>@yield('title')</title>
-
+ <!-- Favicon  -->
+ <link rel="icon" href="/images/icon.png" />
    {{-- Style --}}
    @stack('prepend-style')
    @include('includes.style')
@@ -20,7 +21,7 @@
 <body>
     {{-- Navbar --}}
     @include('includes.navbar')
-   
+
 
     {{-- Page Content --}}
     @yield('content')

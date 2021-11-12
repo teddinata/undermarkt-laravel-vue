@@ -9,32 +9,46 @@
         <section class="store-carousel">
         <div class="container">
             <div class="row">
+
+
             <div class="col-lg-12" data-aos="zoom-in">
                 <div
-                id="storeCarousel"
-                class="carousel slide"
-                data-ride="carousel"
-                >
+                    id="storeCarousel"
+                    class="carousel slide"
+                    data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li
-                    data-target="#storeCarousel"
-                    data-slide-to="0"
-                    class="active"
-                    ></li>
-                    <li data-target="#storeCarousel" data-slide-to="1"></li>
-                    <li data-target="#storeCarousel" data-slide-to="2"></li>
+                    @php
+                    $active = "active"
+                    @endphp
+                   @foreach ($sliders as $slider)
+                   <li
+                   data-target="#storeCarousel"
+                   data-slide-to="{{ $slider['id'] }}" class="{{ $active }}"
+                   data-interval="50"
+                   ></li>
+                   {{ $active = "" }}
+                   @endforeach
+                    {{-- <li data-target="#storeCarousel" data-slide-to="{{ $slider->id }}"></li> --}}
+                    {{-- <li data-target="#storeCarousel" data-slide-to="2"></li>
                     <li data-target="#storeCarousel" data-slide-to="3"></li>
-                    <li data-target="#storeCarousel" data-slide-to="4"></li>
+                    <li data-target="#storeCarousel" data-slide-to="4"></li> --}}
                 </ol>
+
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img
-                        src="/images/banner fix.jpg"
-                        class="d-block w-100"
-                        alt="Carousel Image"
-                    />
+                    @php
+                        $active = "active"
+                    @endphp
+                    @foreach ($sliders as $slider)
+                    <div class="carousel-item {{ $active }}">
+                        <a href="{{ $slider->link }}">
+                            <img
+                            src="{{ Storage::url($slider->image) }}"
+                            class="d-block w-100"
+                            alt="Carousel Image"
+                        />
+                        </a>
                     </div>
-                    <div class="carousel-item">
+                    {{-- <div class="carousel-item">
                     <img
                         src="/images/banner fix 2.jpg"
                         class="d-block w-100"
@@ -61,8 +75,13 @@
                         class="d-block w-100"
                         alt="Carousel Image"
                     />
-                    </div>
+                    </div> --}}
+                    {{ $active = "" }}
+                    @endforeach
                 </div>
+
+            </div>
+
                 </div>
             </div>
             </div>

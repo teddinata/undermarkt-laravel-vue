@@ -34,10 +34,14 @@ Route::get('/register/success', 'Auth\RegisterController@success')->name('regist
 
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/cart', 'CartController@index')->name('cart');
+    Route::get('/cart', 'CartController@index')
+        ->name('cart')
+        ->middleware(['auth', 'verified']);
     Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
 
-    Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+    Route::post('/checkout', 'CheckoutController@process')
+        ->name('checkout');
+
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -75,6 +79,7 @@ Route::prefix('admin')
         Route::resource('category', 'CategoryController');
         Route::resource('user', 'UserController');
         Route::resource('product', 'ProductController');
+        Route::resource('slider', 'SliderController');
         Route::resource('product-gallery', 'ProductGalleryController');
         Route::resource('transaction', 'TransactionController');
     });

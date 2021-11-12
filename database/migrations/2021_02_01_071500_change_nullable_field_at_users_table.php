@@ -18,7 +18,6 @@ class ChangeNullableFieldAtUsersTable extends Migration
             $table->longText('address_two')->nullable()->change();
             $table->integer('provinces_id')->nullable()->change();
             $table->integer('regencies_id')->nullable()->change();
-            $table->integer('districts_id')->nullable()->change();
             $table->integer('zip_code')->nullable()->change();
             $table->string('country')->nullable()->change();
             $table->string('phone_number')->nullable()->change();
@@ -40,7 +39,6 @@ class ChangeNullableFieldAtUsersTable extends Migration
             $table->longText('address_two')->nullable(false)->change();
             $table->integer('provinces_id')->nullable(false)->change();
             $table->integer('regencies_id')->nullable(false)->change();
-            $table->integer('districts_id')->nullable(false)->change();
             $table->integer('zip_code')->nullable(false)->change();
             $table->string('country')->nullable(false)->change();
             $table->string('phone_number')->nullable(false)->change();

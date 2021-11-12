@@ -54,6 +54,12 @@
               Categories
             </a>
             <a
+              href="{{ route('slider.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/slider*')) ? 'active' : '' }} "
+            >
+              Slider
+            </a>
+            <a
               href="{{ route('transaction.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
             >

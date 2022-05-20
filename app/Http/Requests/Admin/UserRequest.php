@@ -25,6 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:50',
+            'phone_number' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email|unique:users',
             'roles' => 'nullable|string|in:ADMIN,USER'
         ];

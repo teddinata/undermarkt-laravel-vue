@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::with('galleries')->paginate(16);
+        $products = Product::with('galleries')->paginate(4);
 
         return view('pages.category', [
             'categories' => $categories,

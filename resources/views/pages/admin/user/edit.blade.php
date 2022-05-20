@@ -45,6 +45,11 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label>No HP User</label>
+                                        <input type="text" name="phone_number" class="form-control" value="{{ $item->phone_number }}" required>
+                                    </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label>Password User</label>
                                         <input type="password" name="password" class="form-control"  >
                                         <small>Kosongkan jika tidak ingin ganti password</small>

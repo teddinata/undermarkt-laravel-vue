@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Http\Request\LoginRequest;
+
 class LoginController extends Controller
 {
     /*
@@ -20,6 +22,8 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+
+    protected $maxAttempts = 3; // default is 5
 
     /**
      * Where to redirect users after login.
@@ -38,5 +42,19 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    
+    // public function create()
+    // {
+    //     return view('login');
+    // }
+
+    // public function store(LoginRequest $request){
+
+    //     $request->authenticate();
+
+    //     $request->session()->regenerate();
+
+    //     return redirect()->route('user');
+    // }
+
+
 }

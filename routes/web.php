@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
+
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', 'LoginController@create')->name('login');
+
+Route::post('/store', 'LoginController@store')->name('store');
+
+Route::middleware('auth')->get('/user', function (Request $request) {
+    return $request->user();
+})->name('user');
+
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/categories', 'CategoryController@index')->name('categories');
@@ -24,7 +37,7 @@ Route::post('/details/{id}', 'DetailController@add')->name('details-add');
 
 
 
-Route::get('/checkout/callback', 'CartController@callback')->name('midtrans-callback');
+Route::get('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
 
 Route::get('/success', 'CartController@success')->name('success');
 
@@ -85,3 +98,4 @@ Route::prefix('admin')
     });
 
 Auth::routes(['verify' => true]);
+

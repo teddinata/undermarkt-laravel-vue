@@ -12,7 +12,8 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-       'users_id', 'insurance_price', 'transaction_status', 'shipping_price', 'total_price', 'code'
+       'users_id', 'insurance_price', 'transaction_status', 'shipping_price',
+       'total_price', 'code'
     ];
 
     /**

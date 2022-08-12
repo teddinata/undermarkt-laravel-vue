@@ -201,7 +201,7 @@
                   <div class="product-subtitle">Ship to Jakarta</div>
                 </div>
                 <div class="col-4 col-md-2">
-                  <div class="product-title text-success">{{'Rp ' . number_format($totalPrice ?? 0, 0, ".", "." )}}</div>
+                  <div class="product-title text-success">{{'Rp' . number_format($totalPrice ?? 0, 0, ".", "." )}}</div>
                   <div class="product-subtitle">Total</div>
                 </div>
                 <div class="col-8 col-md-3">

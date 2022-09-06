@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
 
             $table->longText('address_one');
             $table->longText('address_two');
-            $table->integer('provinces_id');
-            $table->integer('regencies_id');
-            $table->integer('districts_id');
+            $table->integer('provinces_id')->unsigned()->nullable();
+            $table->integer('regencies_id')->nullable();
+            $table->integer('districts_id')->nullable();
             $table->integer('zip_code');
             $table->string('country');
             $table->string('phone_number');

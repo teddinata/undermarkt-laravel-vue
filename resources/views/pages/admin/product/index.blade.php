@@ -86,10 +86,11 @@
         // AJAX DataTable
         var datatable = $('#crudTable').DataTable({
             processing: true,
-            // serverSide: true,
+            serverSide: true,
             ordering: true,
             ajax: {
                 url: '{!! url()->current() !!}',
+                method: 'GET'
             },
             columns: [
                 { data: 'id', name: 'id' },

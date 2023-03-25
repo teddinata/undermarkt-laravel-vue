@@ -90,8 +90,8 @@
             ordering: true,
             ajax: {
                 url: '{!! url()->current() !!}',
-                type: 'GET'
-                dataSrc: ""
+                type: 'GET',
+                dataSrc: "data"
             },
             columns: [
                 { data: 'id', name: 'id' },

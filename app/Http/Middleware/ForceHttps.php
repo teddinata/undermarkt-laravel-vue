@@ -12,7 +12,9 @@ class ForceHttps
             return redirect()->secure($request->getRequestUri());
         }
 
-        return $next($request);
+        // if (env('APP_ENV') === 'local') {
+            return $next($request);
+        // }
     }
 }
 

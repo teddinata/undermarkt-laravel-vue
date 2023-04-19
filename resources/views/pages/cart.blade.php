@@ -126,6 +126,7 @@
                     />
                   </div>
                 </div>
+                {{-- API Aziz  --}}
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="provinces_id">Provinsi</label>
@@ -160,6 +161,41 @@
                     </div>
                 </div>
 
+                {{-- API RajaOngkir --}}
+                {{-- <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="provinces_id">Provinsi</label>
+                      <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
+                        <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                      </select>
+                      <select  v-else class="form-control"></select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="regencies_id">Kabupaten</label>
+                      <select name="regencies_id" id="regencies_id" class="form-control" v-if="provinces" v-model="regencies_id">
+                        <option v-for="city in regencies" :value="city.id">@{{ city.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="courier">Kurir Pengiriman</label>
+                      <select name="cost" :id="value.service" class="form-control" v-model="courier_type">
+                        <option value="jne">JNE</option>
+                      </select>
+                    </div>
+                  </div> --}}
+                  {{-- <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="courier">Service Kurir</label>
+                      <select name="courier" id="courier" class="form-control" :value="value.cost[0].value+'|'+value.service" v-model="state.costService">
+                        <option v-for="value in service">{{ value.service }} - Rp. {{ moneyFormat(value.cost[0].value) }}</option>
+                      </select>
+                    </div>
+                  </div> --}}
+
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="zip_code">Kode Pos</label>
@@ -169,7 +205,7 @@
                       id="zip_code"
                       name="zip_code"
                       value=""
-                    placeholder="Kode Pos"
+                    placeholder="Kode Pos wilayah anda"
                     />
                   </div>
                 </div>
@@ -208,28 +244,38 @@
                 </div>
               </div>
               <div class="row" data-aos="fade-up" data-aos-delay="200">
+                @php
+                    // count tax
+                    $tax = $totalPrice * (11 / 100);
+                    $asuransi = $totalPrice * (0.2 / 100);
+                    $ongkir = 10000;
+                @endphp
                 <div class="col-4 col-md-2">
-                  <div class="product-title">$10</div>
-                  <div class="product-subtitle">Country Tax</div>
-                </div>
-                <div class="col-4 col-md-3">
-                  <div class="product-title">$280</div>
-                  <div class="product-subtitle">Product Insurance</div>
-                </div>
-                <div class="col-4 col-md-2">
-                  <div class="product-title">$580</div>
-                  <div class="product-subtitle">Ship to Jakarta</div>
+                    <div class="product-title">{{'Rp' . number_format($totalPrice ?? 0, 0, ".", "." ) }}</div>
+                    <div class="product-subtitle">Total</div>
                 </div>
                 <div class="col-4 col-md-2">
-                  <div class="product-title text-success">{{'Rp' . number_format($totalPrice ?? 0, 0, ".", "." )}}</div>
-                  <div class="product-subtitle">Total</div>
+                  <div class="product-title">{{'Rp' . number_format($tax ?? 0, 0, ".", "." ) }}</div>
+                  <div class="product-subtitle">PPN (11%)</div>
                 </div>
-                <div class="col-8 col-md-3">
+                <div class="col-4 col-md-2">
+                  <div class="product-title">{{ 'Rp' . number_format($asuransi ?? 0, 0, ".", "." )  }}</div>
+                  <div class="product-subtitle">Asuransi (0,2%)</div>
+                </div>
+                <div class="col-4 col-md-2">
+                  <div class="product-title">{{'Rp' . number_format($ongkir ?? 0, 0, ".", "." )}}</div>
+                  <div class="product-subtitle">Ongkos Kirim</div>
+                </div>
+                <div class="col-4 col-md-2">
+                  <div class="product-title text-success">{{'Rp' . number_format($totalPrice + $tax + $asuransi + $ongkir ?? 0, 0, ".", "." ) }}</div>
+                  <div class="product-subtitle">Grand Total</div>
+                </div>
+                <div class="col-lg-2 col-md-12">
                   <button
                     type="submit"
-                    class="btn btn-success mt-4 px-4 btn-block"
+                    class="btn btn-success mt-2 px-4 btn-block"
                   >
-                    Checkout Now
+                    Checkout Sekarang
                   </button>
                 </div>
               </div>
@@ -258,6 +304,8 @@
             regencies_id: null,
             districts_id: null,
             villages_id: null,
+            courier: null,
+            courier_type: ''
         },
         methods: {
             getProvincesData() {
@@ -290,11 +338,39 @@
                         self.villages = response.data;
                     })
             },
+
+            // getProvincesData() {
+            //     var self = this;
+            //     axios.get('{{ route('customer.rajaongkir.getProvinces') }}' )
+            //         .then(function(response){
+            //             self.provinces = response.data.data;
+            //         })
+            // },
+            // getRegenciesData(provinces_id){
+            //     var self = this;
+            //     // axios.get('{{ url('api/rajaongkir/cities') }}/' + self.province_id)
+            //     axios.get(`api/rajaongkir/cities?province_id=${this.provinces_id}`)
+            //         .then(function(response){
+            //             self.regencies = response.data.data;
+            //         })
+            // },
+            // getCouriersData(){
+            //     var self = this;
+            //     self.courier = true
+            // },
+            // // get ongkir
+            // getOngkirData(){
+            //     var self = this;
+            //     axios.post(`api/rajaongkir/checkOngkir?city_destination=${this.regencies_id}&weight=1700&courier_type=${this.courier}`)
+            //         .then(function(response){
+            //             self.ongkir = response.data.data;
+            //         })
+            // },
         },
         watch: {
             provinces_id: function(val, oldVal){
                 this.regencies_id = null;
-                this.getRegenciesData();
+                this.getRegenciesData(provinces_id);
             },
             regencies_id: function(val, oldVal){
                 this.districts_id = null;

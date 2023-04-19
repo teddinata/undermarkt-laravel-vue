@@ -24,3 +24,10 @@ Route::get('provinces', 'API\LocationController@provinces')->name('api-provinces
 Route::get('regencies/{provinces_id}', 'API\LocationController@regencies')->name('api-regencies');
 Route::get('districts/{regencies_id}', 'API\LocationController@districts')->name('api-districts');
 Route::get('villages/{districts_id}', 'API\LocationController@villages')->name('api-villages');
+
+/**
+ * Route Raja Ongkir
+ */
+Route::get('/rajaongkir/provinces', 'API\RajaOngkirController@getProvinces')->name('customer.rajaongkir.getProvinces');
+Route::get('/rajaongkir/cities', 'API\RajaOngkirController@getCities')->name('customer.rajaongkir.getCities');
+Route::post('/rajaongkir/checkOngkir', 'API\RajaOngkirController@checkOngkir')->name('customer.rajaongkir.checkOngkir');
